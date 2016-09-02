@@ -8,6 +8,7 @@ const fs            = require('fs-extra');
 const gulp          = require('gulp');
 const _             = require('lodash');
 const path          = require('path');
+const plumber       = require('gulp-plumber');
 const run           = Promise.promisify(require('run-sequence'));
 const webpack       = require('webpack');
 const webpackStream = require('webpack-stream');
@@ -49,6 +50,7 @@ gulp.task('watch', asynk(function *watchTask() {
   fs.ensureDirSync(config.outputDir);
 
   gulp.src(config.sourceAnd('webpack.js'))
+    .pipe(plumber())
     .pipe(webpackStream(watchConfig, webpack))
     .pipe(gulp.dest(config.outputAnd('assets')))
   ;

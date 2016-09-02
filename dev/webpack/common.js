@@ -6,14 +6,18 @@ const config  = require('../config');
 const babelrc = fs.readJsonSync('.babelrc');
 
 module.exports = {
+  target: 'electron',
+
   entry: {
     lib: [
+      'material-design-lite',
       'moment',
-      // 'jquery',
       'vue',
       'vue-mdl',
       'vue-router',
-      // 'vue-resource',
+      'vuex',
+      'vuex-router-sync',
+      'electron',
     ],
     app: 'webpack.js',
   },
@@ -85,10 +89,5 @@ module.exports = {
     minimize: false,
   },
 
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'lib',
-    }),
-  ],
+  plugins: [],
 };

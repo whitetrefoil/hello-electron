@@ -18,6 +18,10 @@ module.exports = merge.smart(common, {
   module: {
     loaders: [
       {
+        test  : /\.css$/,
+        loader: ['style', 'css?sourceMap'],
+      },
+      {
         test   : /\.scss$/,
         loaders: ['style', 'css?sourceMap', 'resolve-url?sourceMap', 'sass?sourceMap'],
       },

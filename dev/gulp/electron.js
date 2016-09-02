@@ -2,7 +2,6 @@
 
 const spawn    = require('child_process').spawn;
 const electron = require('electron');
-const fs       = require('fs-extra');
 const gulp     = require('gulp');
 const chalk    = require('gulp-util').colors;
 const config   = require('../config');

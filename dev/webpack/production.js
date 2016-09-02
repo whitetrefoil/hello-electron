@@ -16,6 +16,10 @@ module.exports = merge.smart(common, {
   module: {
     loaders: [
       {
+        test  : /\.css$/,
+        loader: ExtractTextPlugin.extract('css'),
+      },
+      {
         test  : /\.scss$/,
         loader: ExtractTextPlugin.extract('css!resolve-url!sass'),
       },

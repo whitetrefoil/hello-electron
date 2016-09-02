@@ -4,12 +4,17 @@ const { app, BrowserWindow } = require('electron');
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
-function createWindow() {
+const createWindow = function createWindow() {
   // Create the browser window.
-  win = new BrowserWindow({ width: 1024, height: 768 });
+  // win = new BrowserWindow({ width: 1800, height: 900, titleBarStyle: 'hidden-inset' });
+  // win = new BrowserWindow({ width: 1800, height: 900, frame: false });
+  win = new BrowserWindow({ width: 1800, height: 900 });
 
   // and load the index.html of the app.
   win.loadURL(`file://${__dirname}/index.html`);
+
+  const vueToolsPath = '/Users/ZhangXiao/Library/Application Support/Google/Chrome/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/2.1.2_0';
+  BrowserWindow.addDevToolsExtension(vueToolsPath);
 
   // Open the DevTools.
   win.webContents.openDevTools();
@@ -21,7 +26,7 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null;
   });
-}
+};
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
