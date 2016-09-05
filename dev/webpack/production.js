@@ -75,7 +75,7 @@ module.exports = merge.smart(common, {
         removeStyleLinkTypeAttributes: true,
       },
       inject        : 'body',
-      chunksSortMode: 'none',
+      chunksSortMode: 'auto',
     }),
   ],
 });

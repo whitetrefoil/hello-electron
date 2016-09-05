@@ -1,7 +1,6 @@
 'use strict';
 
 const fs      = require('fs-extra');
-const webpack = require('webpack');
 const config  = require('../config');
 const babelrc = fs.readJsonSync('.babelrc');
 
@@ -11,12 +10,12 @@ module.exports = {
   entry: {
     lib: [
       'material-design-lite',
-      'moment',
+      // 'moment',
       'vue',
       'vue-mdl',
-      'vue-router',
+      // 'vue-router',
       'vuex',
-      'vuex-router-sync',
+      // 'vuex-router-sync',
       'electron',
     ],
     app: 'webpack.js',

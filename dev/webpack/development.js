@@ -54,7 +54,7 @@ module.exports = merge.smart(common, {
       hash          : false,
       minify        : false,
       inject        : 'body',
-      chunksSortMode: 'none',
+      chunksSortMode: 'auto',
     }),
   ],
 });

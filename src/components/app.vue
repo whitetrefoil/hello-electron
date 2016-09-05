@@ -1,81 +1,19 @@
-<template>
-  <div id="app" class="mdl-layout mdl-js-layout">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <h1 class="mdl-layout-title">Hello Electron!</h1>
-      </div>
-    </header>
-
-    <section class="search-form">
-      <form action="#">
-        <div class="form-line">
-          <mdl-textfield floating-label="Search In:"
-                         :value="searchIn"
-                         @change="setSearchDirManually"></mdl-textfield>
-          <mdl-button type="button"
-                      class="mdl-js-ripple-effect"
-                      @click="browse">Browse
-          </mdl-button>
-        </div>
-      </form>
-    </section>
-
-    <section class="search-result"></section>
-
-    <footer class="mdl-mini-footer">
-      <div>We are using node {{*versions.node}}, Chrome {{*versions.chrome}}, and Electron {{*versions.electron}}.</div>
-    </footer>
-  </div>
-</template>
-
-<script lang="babel" type="text/javascript">
-const { dialog } = require('electron').remote;
-const _          = require('lodash');
-const store      = require('../vuex/store');
-const actions    = require('../vuex/actions');
-
-module.exports = {
-  store,
-  data() {
-    return {
-      versions: {},
-    };
-  },
-  vuex   : {
-    getters: {
-      searchIn: state => state.params.searchIn,
-    },
-    actions: {
-      setSearchDir: actions.setSearchDir,
-    },
-  },
-  methods: {
-    browse() {
-      dialog.showOpenDialog({
-        title     : 'Search In...',
-        properties: ['openDirectory'],
-      }, filenames => {
-        if (_.isNil(filenames)) { return; }
-        this.setSearchDir(filenames[0]);
-      });
-    },
-    setSearchDirManually(event) {
-      this.setSearchDir(event.target.value);
-    },
-  },
-  ready() {
-    this.versions = process.versions;
-  },
-};
-</script>
-
 <style lang="scss" rel="stylesheet/scss">
-@import "~material-design-lite/dist/material.indigo-pink.min.css";
+@import "~material-design-lite/src/_color-definitions.scss";
+@import "~material-design-lite/src/material-design-lite.scss";
+/*@import "~material-design-lite/dist/material.indigo-pink.min.css";*/
 @import "~vendor/roboto-fonts.scss";
 @import "~vendor/material-icons.css";
 
 * {
-  box-sizing : border-box;
+  box-sizing          : border-box;
+  -webkit-app-region  : drag;
+  -webkit-user-select : none;
+}
+
+input, button, textarea {
+  -webkit-app-region  : no-drag;
+  -webkit-user-select : text;
 }
 
 #app {
@@ -90,29 +28,8 @@ module.exports = {
   }
 
   > header {
-    display             : block;
-    -webkit-app-region  : drag;
-    -webkit-user-select : none;
-  }
-
-  .search-form {
-    form {
-      width : 100%;
-
-      .form-line {
-        display     : flex;
-        align-items : center;
-
-        > * {
-          margin-left : 10px;
-        }
-
-        > *:first-child {
-          flex-grow   : 1;
-          margin-left : 0;
-        }
-      }
-    }
+    display : block;
+    padding-top: 24px;
   }
 
   .search-result {
@@ -120,3 +37,51 @@ module.exports = {
   }
 }
 </style>
+
+<template>
+  <div id="app" class="mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <h1 class="mdl-layout-title">Hello Electron!</h1>
+      </div>
+    </header>
+
+    <search-form :search-in="searchIn" @set-search-dir="setSearchDir"></search-form>
+
+    <section class="search-result"></section>
+
+    <footer class="mdl-mini-footer">
+      <div>We are using node {{*versions.node}}, Chrome {{*versions.chrome}}, and Electron {{*versions.electron}}.</div>
+    </footer>
+  </div>
+</template>
+
+<script lang="babel" type="text/javascript">
+const actions    = require('../vuex/actions');
+const searchForm = require('./search-form.vue');
+
+module.exports = {
+  data() {
+    return {
+      versions: {},
+    };
+  },
+  vuex   : {
+    getters: {
+      searchIn: state => state.params.searchIn,
+    },
+    actions: {
+      setSearchDir: actions.setSearchDir,
+    },
+  },
+  methods: {
+  },
+  ready() {
+    this.versions = process.versions;
+  },
+  components: {
+    searchForm,
+  },
+};
+</script>
+

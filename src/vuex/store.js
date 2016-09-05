@@ -1,11 +1,11 @@
-const Vue   = require('vue');
+const Vue  = require('vue');
 const Vuex = require('vuex');
 
 Vue.use(Vuex);
 
 const initialState = {
   params: {
-    searchIn: void 0,
+    searchIn     : void 0,
     rawExtensions: [],
     jpgExtensions: [],
   },
@@ -18,6 +18,7 @@ const mutations = {
 };
 
 module.exports = new Vuex.Store({
-  state: initialState,
+  state : initialState,
   mutations,
+  strict: true,
 });
