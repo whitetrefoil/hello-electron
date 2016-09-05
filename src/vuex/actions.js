@@ -4,16 +4,14 @@ const _ = require('lodash');
  * @param {string} ext
  * @returns {string}
  */
-const formatExt = function formatExt(ext) {
+const formatExt = function formatExt(ext, upperCase = true) {
   if (!_.isString(ext) || _.isEmpty(ext)) {
     throw new TypeError('"extension" must be a non-empty string.');
   }
 
-  let convertedExt = ext.toUpperCase();
+  let convertedExt = upperCase ? ext.toUpperCase() : ext;
 
-  if (convertedExt[0] !== '.') {
-    convertedExt = '.' + convertedExt;
-  }
+  convertedExt = _.trimStart(convertedExt, ['*', '?', '.']);
 
   return convertedExt;
 };
@@ -32,6 +30,8 @@ module.exports = {
 
   deleteRawExt({ dispatch }, ext) {
     dispatch('DELETE_RAW_EXT', formatExt(ext));
+    // Delete both uppercase and original one in case of dirty data.
+    dispatch('DELETE_RAW_EXT', formatExt(ext, false));
     // TODO: Error handling
   },
 
@@ -46,6 +46,8 @@ module.exports = {
 
   deleteJpgExt({ dispatch }, ext) {
     dispatch('DELETE_JPG_EXT', formatExt(ext));
+    // Delete both uppercase and original one in case of dirty data.
+    dispatch('DELETE_JPG_EXT', formatExt(ext, false));
     // TODO: Error handling
   },
 

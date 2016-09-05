@@ -10,12 +10,16 @@ form {
       <dir-selector class="form-line" :search-in="searchIn"></dir-selector>
 
       <ext-name-selector class="form-line"
-                         name="RAW Extensions:"
-                         :extensions="rawExt"></ext-name-selector>
+                         name="RAW Ext.:"
+                         :extensions="rawExt"
+                         @add-ext="addRawExt"
+                         @delete-ext="deleteRawExt"></ext-name-selector>
 
       <ext-name-selector class="form-line"
-                         name="JPG Extensions:"
-                         :extensions="jpgExt"></ext-name-selector>
+                         name="JPG Ext.:"
+                         :extensions="jpgExt"
+                         @add-ext="addJpgExt"
+                         @delete-ext="deleteJpgExt"></ext-name-selector>
     </form>
   </section>
 </template>
@@ -28,13 +32,28 @@ module.exports = {
 
   props: {
     searchIn: [String, void 0],
-    rawExt: Set,
-    jpgExt: Set,
+    rawExt  : Array,
+    jpgExt  : Array,
   },
 
   components: {
     dirSelector,
     extNameSelector,
+  },
+
+  methods: {
+    addRawExt(ext) {
+      this.$dispatch('add-raw-ext', ext);
+    },
+    addJpgExt(ext) {
+      this.$dispatch('add-jpg-ext', ext);
+    },
+    deleteRawExt(ext) {
+      this.$dispatch('delete-raw-ext', ext);
+    },
+    deleteJpgExt(ext) {
+      this.$dispatch('delete-jpg-ext', ext);
+    },
   },
 };
 </script>

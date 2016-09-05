@@ -1,3 +1,4 @@
+const _    = require('lodash');
 const Vue  = require('vue');
 const Vuex = require('vuex');
 
@@ -6,8 +7,8 @@ Vue.use(Vuex);
 const initialState = {
   params: {
     searchIn: void 0,
-    rawExt  : new Set(['.ARW', '.DNG']),
-    jpgExt  : new Set(['.JPG', '.JPEG']),
+    rawExt  : ['ARW', 'DNG', 'asdf', 'qwer', 'xzc', 'dfgh', 'xzvzcvx'],
+    jpgExt  : ['JPG', 'JPEG'],
   },
 };
 
@@ -18,23 +19,23 @@ const mutations = {
   },
 
   ADD_RAW_EXT(state, ext) {
-    state.params.rawExt.add(ext);
+    state.params.rawExt = _.union(state.params.rawExt, [ext]);
   },
   DELETE_RAW_EXT(state, ext) {
-    state.params.rawExt.delete(ext);
+    state.params.rawExt.$remove(ext);
   },
   CLEAR_RAW_EXT(state) {
-    state.params.rawExt.clear();
+    state.params.rawExt = [];
   },
 
   ADD_JPG_EXT(state, ext) {
-    state.params.jpgExt.add(ext);
+    state.params.jpgExt = _.union(state.params.jpgExt, [ext]);
   },
   DELETE_JPG_EXT(state, ext) {
-    state.params.jpgExt.delete(ext);
+    state.params.jpgExt.$remove(ext);
   },
   CLEAR_JPG_EXT(state) {
-    state.params.jpgExt.clear();
+    state.params.jpgExt = [];
   },
 };
 

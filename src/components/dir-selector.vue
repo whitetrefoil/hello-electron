@@ -1,5 +1,5 @@
 <style lang="scss" rel="stylesheet/scss" scoped>
-.vue-component-dir-selector {
+.dir-selector {
   display: flex;
   align-items : center;
 }
@@ -10,12 +10,12 @@
 </style>
 
 <template>
-  <div class="vue-component-dir-selector">
+  <div class="dir-selector">
     <mdl-textfield floating-label="Search In:"
                    :value="searchIn"
                    @change="setSearchDirManually"></mdl-textfield>
     <mdl-button type="button"
-                class="mdl-js-ripple-effect"
+                v-mdl-ripple-effect
                 colored
                 @click="browse">Browse
     </mdl-button>

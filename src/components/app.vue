@@ -49,7 +49,11 @@ input, button, textarea {
     <search-form :search-in="searchIn"
                  :raw-ext="rawExt"
                  :jpg-ext="jpgExt"
-                 @set-search-dir="setSearchDir"></search-form>
+                 @set-search-dir="setSearchDir"
+                 @add-raw-ext="addRawExt"
+                 @delete-raw-ext="deleteRawExt"
+                 @add-jpg-ext="addJpgExt"
+                 @delete-jpg-ext="deleteJpgExt"></search-form>
 
     <section class="search-result"></section>
 
@@ -77,7 +81,6 @@ module.exports = {
     },
     actions,
   },
-  methods   : {},
   ready() {
     this.versions = process.versions;
   },

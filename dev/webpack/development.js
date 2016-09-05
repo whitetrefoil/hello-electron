@@ -19,11 +19,11 @@ module.exports = merge.smart(common, {
     loaders: [
       {
         test  : /\.css$/,
-        loader: ['style', 'css?sourceMap'],
+        loader: ExtractTextPlugin.extract('style!css?sourceMap'),
       },
       {
         test   : /\.scss$/,
-        loaders: ['style', 'css?sourceMap', 'resolve-url?sourceMap', 'sass?sourceMap'],
+        loaders: ExtractTextPlugin.extract('style!css?sourceMap!resolve-url?sourceMap!sass?sourceMap'),
       },
       {
         test  : /\.(png|jpe?g|gif|svg|woff2?|ttf|eot|ico)$/,
@@ -35,8 +35,8 @@ module.exports = merge.smart(common, {
   vue: {
     loaders: {
       js  : 'babel',
-      css : 'style!css?sourceMap',
-      scss: 'style!css?sourceMap!resolve-url?sourceMap!sass?sourceMap',
+      css : ExtractTextPlugin.extract('css?sourceMap'),
+      scss: ExtractTextPlugin.extract('css?sourceMap!resolve-url?sourceMap!sass?sourceMap'),
     },
   },
 
