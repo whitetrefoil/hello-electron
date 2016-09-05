@@ -16,6 +16,7 @@
                    @change="setSearchDirManually"></mdl-textfield>
     <mdl-button type="button"
                 class="mdl-js-ripple-effect"
+                colored
                 @click="browse">Browse
     </mdl-button>
   </div>

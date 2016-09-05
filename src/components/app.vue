@@ -28,8 +28,8 @@ input, button, textarea {
   }
 
   > header {
-    display : block;
-    padding-top: 24px;
+    display     : block;
+    padding-top : 24px;
   }
 
   .search-result {
@@ -46,7 +46,10 @@ input, button, textarea {
       </div>
     </header>
 
-    <search-form :search-in="searchIn" @set-search-dir="setSearchDir"></search-form>
+    <search-form :search-in="searchIn"
+                 :raw-ext="rawExt"
+                 :jpg-ext="jpgExt"
+                 @set-search-dir="setSearchDir"></search-form>
 
     <section class="search-result"></section>
 
@@ -66,16 +69,15 @@ module.exports = {
       versions: {},
     };
   },
-  vuex   : {
+  vuex      : {
     getters: {
       searchIn: state => state.params.searchIn,
+      rawExt  : state => state.params.rawExt,
+      jpgExt  : state => state.params.jpgExt,
     },
-    actions: {
-      setSearchDir: actions.setSearchDir,
-    },
+    actions,
   },
-  methods: {
-  },
+  methods   : {},
   ready() {
     this.versions = process.versions;
   },
