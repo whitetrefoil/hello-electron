@@ -1,13 +1,14 @@
-const _    = require('lodash');
-const Vue  = require('vue');
-const Vuex = require('vuex');
+const _                  = require('lodash');
+const Vue                = require('vue');
+const Vuex               = require('vuex');
+const localStoragePlugin = require('./plugins/local-storage');
 
 Vue.use(Vuex);
 
 const initialState = {
   params: {
     searchIn: void 0,
-    rawExt  : ['ARW', 'DNG', 'asdf', 'qwer', 'xzc', 'dfgh', 'xzvzcvx'],
+    rawExt  : ['ARW', 'DNG'],
     jpgExt  : ['JPG', 'JPEG'],
   },
 };
@@ -24,6 +25,9 @@ const mutations = {
   DELETE_RAW_EXT(state, ext) {
     state.params.rawExt.$remove(ext);
   },
+  SET_RAW_EXT(state, exts) {
+    state.params.rawExt = exts;
+  },
   CLEAR_RAW_EXT(state) {
     state.params.rawExt = [];
   },
@@ -34,13 +38,17 @@ const mutations = {
   DELETE_JPG_EXT(state, ext) {
     state.params.jpgExt.$remove(ext);
   },
+  SET_JPG_EXT(state, exts) {
+    state.params.jpgExt = exts;
+  },
   CLEAR_JPG_EXT(state) {
     state.params.jpgExt = [];
   },
 };
 
 module.exports = new Vuex.Store({
-  state : initialState,
+  state  : initialState,
   mutations,
-  strict: true,
+  plugins: [localStoragePlugin],
+  strict : true,
 });

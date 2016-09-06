@@ -50,6 +50,8 @@ label {
 </template>
 
 <script lang="babel" type="text/javascript">
+const _ = require('lodash');
+
 module.exports = {
   props   : {
     name      : String,
@@ -62,7 +64,9 @@ module.exports = {
   },
   methods : {
     addExt() {
+      if (_.isEmpty(this.extToAdd)) { return; }
       this.$dispatch('add-ext', this.extToAdd);
+      this.extToAdd = '';
     },
     deleteExt(ext) {
       this.$dispatch('delete-ext', ext);
