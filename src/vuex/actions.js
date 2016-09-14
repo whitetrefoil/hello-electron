@@ -62,7 +62,7 @@ const formatExt = function formatExt(ext, upperCase = true) {
  * @returns {Array.<object>}
  */
 const findUnnecessaryFiles = function findUnnecessaryFiles(rawFiles, jpgFiles, baseDir) {
-  const searchResults = [];
+  const searchResult = [];
 
   _.forEach(rawFiles, raw => {
     const file = {};
@@ -79,10 +79,10 @@ const findUnnecessaryFiles = function findUnnecessaryFiles(rawFiles, jpgFiles, b
     file.shortPath = path.relative(baseDir, file.rawFile);
     file.foundJpgExts = _.map(file.jpgFiles, jpg => path.extname(jpg));
 
-    searchResults.push(file);
+    searchResult.push(file);
   });
 
-  return searchResults;
+  return searchResult;
 };
 
 

@@ -6,13 +6,13 @@ const localStoragePlugin = require('./plugins/local-storage');
 Vue.use(Vuex);
 
 const initialState = {
-  params       : {
+  params      : {
     searchIn: void 0,
     rawExt  : ['ARW', 'DNG'],
     jpgExt  : ['JPG', 'JPEG'],
   },
-  searchResults: [],
-  errors       : [],
+  searchResult: [],
+  errors      : [],
 };
 
 const mutations = {
@@ -47,8 +47,8 @@ const mutations = {
     state.params.jpgExt = [];
   },
 
-  SET_SEARCH_RESULT(state, results) {
-    state.searchResults = results;
+  SET_SEARCH_RESULT(state, result) {
+    state.searchResult = result;
   },
 
   ADD_ERROR_MESSAGE(state, message) {

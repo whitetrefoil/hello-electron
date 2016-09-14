@@ -72,9 +72,7 @@ input, button, textarea {
       <mdl-button raised v-mdl-ripple-effect>Reset</mdl-button>
     </section>
 
-    <section class="search-result">
-      <pre>{{searchResults}}</pre>
-    </section>
+    <search-result :search-result="searchResult"></search-result>
 
     <footer class="mdl-mini-footer">
       <div>We are using node {{versions.node}}, Chrome {{versions.chrome}}, and Electron {{versions.electron}}.</div>
@@ -83,8 +81,9 @@ input, button, textarea {
 </template>
 
 <script lang="babel" type="text/javascript">
-const actions    = require('../vuex/actions');
-const searchForm = require('./search-form.vue');
+const actions      = require('../vuex/actions');
+const searchForm   = require('./search-form.vue');
+const searchResult = require('./search-result.vue');
 
 module.exports = {
   data() {
@@ -94,10 +93,10 @@ module.exports = {
   },
   vuex      : {
     getters: {
-      searchIn     : state => state.params.searchIn,
-      rawExt       : state => state.params.rawExt,
-      jpgExt       : state => state.params.jpgExt,
-      searchResults: state => JSON.stringify(state.searchResults, null, 2),
+      searchIn    : state => state.params.searchIn,
+      rawExt      : state => state.params.rawExt,
+      jpgExt      : state => state.params.jpgExt,
+      searchResult: state => state.searchResult,
     },
     actions,
   },
@@ -106,6 +105,7 @@ module.exports = {
   },
   components: {
     searchForm,
+    searchResult,
   },
 };
 </script>
