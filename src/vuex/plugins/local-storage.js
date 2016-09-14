@@ -25,6 +25,7 @@ const localStoragePlugin = function localStoragePlugin(store) {
   readFromSave(store, 'SET_SEARCH_DIR', 'searchIn');
   readFromSave(store, 'SET_RAW_EXT', 'rawExt');
   readFromSave(store, 'SET_JPG_EXT', 'jpgExt');
+  readFromSave(store, 'SET_ERROR_MESSAGES', 'errors');
 
   store.subscribe((mutation, state) => {
 
@@ -43,6 +44,13 @@ const localStoragePlugin = function localStoragePlugin(store) {
       case 'SET_JPG_EXT':
       case 'CLEAR_JPG_EXT':
         localStorage.setItem('jpgExt', JSON.stringify(state.params.jpgExt));
+        break;
+      case 'ADD_ERROR_MESSAGE':
+      case 'SET_ERROR_MESSAGES':
+      case 'CLEAR_ERROR_MESSAGES':
+        localStorage.setItem('errors', JSON.stringify(state.errors));
+        break;
+      case 'SET_SEARCH_RESULT':
         break;
       default:
         log.warn(`Unknown mutation "${mutation.type}", will ignore...`);

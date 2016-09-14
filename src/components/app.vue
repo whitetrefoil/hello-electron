@@ -24,7 +24,7 @@ input, button, textarea {
 
   > section {
     width   : 100%;
-    padding : 20px;
+    padding : 20px 20px 0 20px;
   }
 
   > header {
@@ -34,6 +34,14 @@ input, button, textarea {
 
   .search-result {
     flex-grow : 1;
+  }
+}
+</style>
+
+<style lang="scss" rel="stylesheet/scss" scoped>
+.search-buttons {
+  button {
+    margin-right : 15px;
   }
 }
 </style>
@@ -55,10 +63,21 @@ input, button, textarea {
                  @add-jpg-ext="addJpgExt"
                  @delete-jpg-ext="deleteJpgExt"></search-form>
 
-    <section class="search-result"></section>
+    <section class="search-buttons">
+      <mdl-button raised
+                  primary
+                  v-mdl-ripple-effect
+                  @click="search">Search
+      </mdl-button>
+      <mdl-button raised v-mdl-ripple-effect>Reset</mdl-button>
+    </section>
+
+    <section class="search-result">
+      <pre>{{searchResults}}</pre>
+    </section>
 
     <footer class="mdl-mini-footer">
-      <div>We are using node {{*versions.node}}, Chrome {{*versions.chrome}}, and Electron {{*versions.electron}}.</div>
+      <div>We are using node {{versions.node}}, Chrome {{versions.chrome}}, and Electron {{versions.electron}}.</div>
     </footer>
   </div>
 </template>
@@ -75,9 +94,10 @@ module.exports = {
   },
   vuex      : {
     getters: {
-      searchIn: state => state.params.searchIn,
-      rawExt  : state => state.params.rawExt,
-      jpgExt  : state => state.params.jpgExt,
+      searchIn     : state => state.params.searchIn,
+      rawExt       : state => state.params.rawExt,
+      jpgExt       : state => state.params.jpgExt,
+      searchResults: state => JSON.stringify(state.searchResults, null, 2),
     },
     actions,
   },

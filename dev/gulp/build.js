@@ -11,7 +11,7 @@ gulp.task('build', ['webpack'], () => {
 
   return gulp.src(config.outputAnd('**'), { base: config.outputDir })
     .pipe(electron({
-      version : '1.3.4',
+      version : '1.3.5',
       platform: 'darwin',
     }))
     .pipe(symdest('dist/app'))

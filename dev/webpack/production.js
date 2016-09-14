@@ -21,7 +21,7 @@ module.exports = merge.smart(common, {
       },
       {
         test  : /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!resolve-url!sass'),
+        loader: ExtractTextPlugin.extract('css!resolve-url?sourceMap!sass?sourceMap'),
       },
       {
         test  : /\.(png|jpe?g|gif|svg|woff2?|ttf|eot|ico)$/,
@@ -41,7 +41,7 @@ module.exports = merge.smart(common, {
     loaders: {
       js  : 'babel',
       css : ExtractTextPlugin.extract('css'),
-      scss: ExtractTextPlugin.extract('css!resolve-url!sass'),
+      scss: ExtractTextPlugin.extract('css!resolve-url?sourceMap!sass?sourceMap'),
     },
   },
 
@@ -51,11 +51,11 @@ module.exports = merge.smart(common, {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false,
+    //   },
+    // }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.DedupePlugin(),
     new ExtractTextPlugin('[name]-[hash].css'),
@@ -64,16 +64,7 @@ module.exports = merge.smart(common, {
       template      : './src/index.html',
       chunks        : ['lib', 'app'],
       hash          : false,
-      minify        : {
-        collapseBooleanAttributes    : true,
-        collapseWhitespace           : true,
-        removeAttributeQuotes        : true,
-        removeComments               : true,
-        removeEmptyAttributes        : true,
-        removeRedundantAttributes    : false,
-        removeScriptTypeAttributes   : true,
-        removeStyleLinkTypeAttributes: true,
-      },
+      minify        : false,
       inject        : 'body',
       chunksSortMode: 'auto',
     }),
