@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
-const webpack           = require('webpack');
-const merge             = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const common            = require('./common');
+const webpack           = require('webpack')
+const merge             = require('webpack-merge')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const common            = require('./common')
 
 module.exports = merge.smart(common, {
   output: {
@@ -69,4 +69,4 @@ module.exports = merge.smart(common, {
       chunksSortMode: 'auto',
     }),
   ],
-});
+})

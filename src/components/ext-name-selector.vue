@@ -40,37 +40,58 @@ label {
       </span>
     </div>
 
-    <mdl-textfield floating-label="Add More"
-                   :value.sync="extToAdd"
-                   @keydown.enter="addExt"></mdl-textfield>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input type="text"
+             class="mdl-textfield__input"
+             v-model="local.extToAdd"
+             @keydown.enter="addExt">
+      <label class="mdl-textfield__label">Add More</label>
+    </div>
 
-    <mdl-button type="button" icon="icon" colored @click="addExt">
-      <i class="material-icons">done</i></mdl-button>
+    <mdl-button
+        types="icon"
+        color="primary"
+        @click.prevent.stop.native="addExt">
+      done
+    </mdl-button>
   </div>
 </template>
 
-<script lang="babel" type="text/javascript">
-const _ = require('lodash');
+<script type="text/javascript" lang="babel">
+const _                          = require('lodash')
+const { MdlButton, MdlTextArea } = require('./mdl')
 
 module.exports = {
-  props   : {
-    name      : String,
-    extensions: Array,
+  props: {
+    name           : String,
+    extensions     : Array,
+    addExtAction   : String,
+    deleteExtAction: String,
   },
+
   data() {
     return {
-      extToAdd: '',
-    };
+      local: {
+        extToAdd: '',
+      },
+    }
   },
-  methods : {
+
+  methods: {
     addExt() {
-      if (_.isEmpty(this.extToAdd)) { return; }
-      this.$dispatch('add-ext', this.extToAdd);
-      this.extToAdd = '';
+      if (_.isEmpty(this.local.extToAdd)) { return }
+      this.$store.dispatch(this.addExtAction, this.local.extToAdd)
+      this.local.extToAdd = ''
     },
+
     deleteExt(ext) {
-      this.$dispatch('delete-ext', ext);
+      this.$store.dispatch(this.deleteExtAction, ext)
     },
   },
-};
+
+  components: {
+    MdlButton,
+    MdlTextArea,
+  },
+}
 </script>

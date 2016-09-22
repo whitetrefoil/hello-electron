@@ -3,7 +3,7 @@
 
 <template>
   <section class="search-result">
-    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
+    <table class="mdl-data-table mdl-js-data-table">
 
       <thead>
         <tr>
@@ -13,9 +13,9 @@
       </thead>
 
       <tbody>
-        <tr >
-          <td class="mdl-data-table__cell--non-numeric">row.shortPath}}</td>
-          <td class="mdl-data-table__cell--non-numeric">row.foundJpgExts}}</td>
+        <tr v-for="row in searchResult">
+          <td class="mdl-data-table__cell--non-numeric">{{row.shortPath}}</td>
+          <td class="mdl-data-table__cell--non-numeric">{{row.foundJpgExts}}</td>
         </tr>
       </tbody>
     </table>
@@ -23,15 +23,11 @@
 </template>
 
 <script type="text/javascript" lang="babel">
+const SearchResult = require('../vuex/actions/search-result')
+
 module.exports = {
   props: {
-    searchResult: Array,
+    searchResult: [SearchResult, void 0],
   },
-
-  computed: {
-    searchResultJson() {
-      return JSON.stringify(this.searchResult, null, 2);
-    },
-  },
-};
+}
 </script>

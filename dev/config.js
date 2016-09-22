@@ -3,11 +3,11 @@
 // Default Settings
 // -----
 
-'use strict';
+'use strict'
 
-const meow  = require('meow');
-const chalk = require('gulp-util').colors;
-const path  = require('path');
+const meow  = require('meow')
+const chalk = require('gulp-util').colors
+const path  = require('path')
 
 const argv = meow(`
     Usage:
@@ -33,7 +33,7 @@ const argv = meow(`
       development: false,
     },
   }
-);
+)
 
 /**
  * @param {string} appRoot - root directory of the application.
@@ -41,23 +41,23 @@ const argv = meow(`
  */
 module.exports.initialize = (appRoot) => {
 
-  process.env.NODE_ENV  = argv.flags.development ? 'development' : 'production';
-  process.env.BABEL_ENV = process.env.NODE_ENV;
+  process.env.NODE_ENV  = argv.flags.development ? 'development' : 'production'
+  process.env.BABEL_ENV = process.env.NODE_ENV
 
-  module.exports.appRoot = appRoot;
+  module.exports.appRoot = appRoot
   module.exports.rootAnd = pathInRoot => {
-    return path.join(module.exports.appRoot, pathInRoot);
-  };
+    return path.join(module.exports.appRoot, pathInRoot)
+  }
 
-  module.exports.sourceDir = 'src';
+  module.exports.sourceDir = 'src'
   module.exports.sourceAnd = pathInSource => {
-    return path.join(module.exports.sourceDir, pathInSource);
-  };
+    return path.join(module.exports.sourceDir, pathInSource)
+  }
 
-  module.exports.outputDir = 'lib';
+  module.exports.outputDir = 'lib'
   module.exports.outputAnd = pathInOutput => {
-    return path.join(module.exports.outputDir, pathInOutput);
-  };
+    return path.join(module.exports.outputDir, pathInOutput)
+  }
 
-  return module.exports;
-};
+  return module.exports
+}

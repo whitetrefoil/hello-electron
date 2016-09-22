@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-const fs      = require('fs-extra');
-const config  = require('../config');
-const babelrc = fs.readJsonSync('.babelrc');
+const fs      = require('fs-extra')
+const config  = require('../config')
+const babelrc = fs.readJsonSync('.babelrc')
 
 module.exports = {
   target: 'electron',
@@ -10,9 +10,9 @@ module.exports = {
   entry: {
     lib: [
       'material-design-lite',
-      // 'moment',
+      'moment',
       'vue',
-      'vue-mdl',
+      // 'vue-mdl',
       // 'vue-router',
       'vuex',
       // 'vuex-router-sync',
@@ -23,8 +23,8 @@ module.exports = {
 
   resolve: {
     root              : [
-      config.rootAnd(config.sourceDir),
       config.rootAnd('node_modules'),
+      config.rootAnd(config.sourceDir),
     ],
     modulesDirectories: [],
     extensions        : ['', '.js', '.vue'],
@@ -89,4 +89,4 @@ module.exports = {
   },
 
   plugins: [],
-};
+}
