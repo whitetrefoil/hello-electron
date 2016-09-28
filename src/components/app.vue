@@ -97,7 +97,10 @@ input, button, textarea {
         </mdl-radio>
       </div>
 
-      <!--<search-result :search-result="searchResult"></search-result>-->
+      <search-result
+          v-if="searchResult != null"
+          :search-result="searchResult"
+          :order-by="params.orderBy"></search-result>
 
       <notification
           :errors="errors"
@@ -118,7 +121,7 @@ const store                    = require('../vuex/store')
 const { MdlButton, MdlRadio }  = require('./mdl')
 const Notification             = require('./notification.vue')
 const SearchForm               = require('./search-form.vue')
-// const SearchResult             = require('./search-result.vue')
+const SearchResult             = require('./search-result.vue')
 
 module.exports = {
   name: 'App',
@@ -135,26 +138,22 @@ module.exports = {
     this.versions = process.versions
   },
 
-  computed: mapState(['params', 'errors']),
+  computed: mapState(['params', 'searchResult', 'errors']),
 
   components: {
     MdlButton,
     MdlRadio,
     Notification,
     SearchForm,
-    // SearchResult,
+    SearchResult,
   },
 
   methods: {
-    search() {
-      log.warn('TODO')
-    },
-
     reset() {
       log.warn('TODO')
     },
 
-    ...mapActions(['setOrderBy']),
+    ...mapActions(['setOrderBy', 'search']),
   },
 }
 </script>
