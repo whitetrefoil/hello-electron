@@ -6,11 +6,13 @@ const localStoragePlugin = require('./plugins/local-storage')
 
 Vue.use(Vuex)
 
+
 const initialState = {
   params      : {
     searchIn: '',
     rawExt  : ['ARW', 'DNG'],
     jpgExt  : ['JPG', 'JPEG'],
+    orderBy : 'jpg',
   },
   searchResult: void 0,
   errors      : [],
@@ -48,6 +50,10 @@ const mutations = {
   },
   CLEAR_JPG_EXT(state) {
     state.params.jpgExt = []
+  },
+
+  SET_ORDER_BY(state, orderBy) {
+    state.params.orderBy = orderBy
   },
 
   SET_SEARCH_RESULT(state, result) {

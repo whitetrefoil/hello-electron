@@ -25,6 +25,7 @@ const localStoragePlugin = function localStoragePlugin(store) {
   readFromSave(store, 'SET_SEARCH_DIR', 'searchIn')
   readFromSave(store, 'SET_RAW_EXT', 'rawExt')
   readFromSave(store, 'SET_JPG_EXT', 'jpgExt')
+  readFromSave(store, 'SET_ORDER_BY', 'orderBy')
   readFromSave(store, 'SET_ERROR_MESSAGES', 'errors')
 
   store.subscribe((mutation, state) => {
@@ -44,6 +45,9 @@ const localStoragePlugin = function localStoragePlugin(store) {
       case 'SET_JPG_EXT':
       case 'CLEAR_JPG_EXT':
         localStorage.setItem('jpgExt', JSON.stringify(state.params.jpgExt))
+        break
+      case 'SET_ORDER_BY':
+        localStorage.setItem('orderBy', JSON.stringify(state.params.orderBy))
         break
       case 'ADD_ERROR_MESSAGE':
       case 'REMOVE_FIRST_ERROR_MESSAGE':

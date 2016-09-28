@@ -82,8 +82,19 @@ input, button, textarea {
             @click.stop.prevent.native="reset">Reset
         </mdl-button>
 
-        <!--<mdl-radio name="group-by" value="raw">By RAW</mdl-radio>-->
-        <!--<mdl-radio name="group-by" value="jpg">By JPG</mdl-radio>-->
+        <mdl-radio
+            name="group-by"
+            value="raw"
+            @input="setOrderBy"
+        >By RAW
+        </mdl-radio>
+
+        <mdl-radio
+            name="group-by"
+            value="jpg"
+            @input="setOrderBy"
+        >By JPG
+        </mdl-radio>
       </div>
 
       <!--<search-result :search-result="searchResult"></search-result>-->
@@ -101,13 +112,13 @@ input, button, textarea {
 </template>
 
 <script type="text/javascript" lang="babel">
-const { mapState }  = require('vuex')
-const log           = require('../log')
-const store         = require('../vuex/store')
-const { MdlButton } = require('./mdl')
-const Notification  = require('./notification.vue')
-const SearchForm    = require('./search-form.vue')
-// const searchResult = require('./search-result.vue')
+const { mapState, mapActions } = require('vuex')
+const log                      = require('../log')
+const store                    = require('../vuex/store')
+const { MdlButton, MdlRadio }  = require('./mdl')
+const Notification             = require('./notification.vue')
+const SearchForm               = require('./search-form.vue')
+// const SearchResult             = require('./search-result.vue')
 
 module.exports = {
   name: 'App',
@@ -128,9 +139,10 @@ module.exports = {
 
   components: {
     MdlButton,
+    MdlRadio,
     Notification,
     SearchForm,
-//    searchResult,
+    // SearchResult,
   },
 
   methods: {
@@ -141,6 +153,8 @@ module.exports = {
     reset() {
       log.warn('TODO')
     },
+
+    ...mapActions(['setOrderBy']),
   },
 }
 </script>

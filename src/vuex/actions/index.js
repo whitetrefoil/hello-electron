@@ -84,6 +84,17 @@ module.exports = {
     commit('CLEAR_JPG_EXT')
   },
 
+  setOrderBy({ commit }, orderBy) {
+    switch (orderBy) {
+      case 'jpg':
+      case 'raw':
+        commit('SET_ORDER_BY', orderBy)
+        break
+      default:
+        throw new Error('Unknown value of `orderBy`')
+    }
+  },
+
   search({ commit, dispatch, state }) {
 
     const files = []
