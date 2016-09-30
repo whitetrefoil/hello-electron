@@ -1,10 +1,13 @@
 <style lang="scss" rel="stylesheet/scss">
+$image_path: "~material-design-lite/src/images";
 @import "~material-design-lite/src/_color-definitions.scss";
 @import "~material-design-lite/src/material-design-lite.scss";
 /*@import "~material-design-lite/dist/material.indigo-pink.min.css";*/
 @import "~vendor/roboto-fonts.scss";
 @import "~vendor/material-icons.css";
+</style>
 
+<style lang="scss" rel="stylesheet/scss">
 * {
   box-sizing          : border-box;
   -webkit-app-region  : drag;
@@ -100,7 +103,12 @@ input, button, textarea {
       <search-result
           v-if="searchResult != null"
           :search-result="searchResult"
-          :order-by="params.orderBy"></search-result>
+          :search-result-selection="searchResultSelection"
+          :order-by="params.orderBy"
+          select-action="setSearchResultSelection"
+      ></search-result>
+
+      <div>{{searchResultSelection}}</div>
 
       <notification
           :errors="errors"
@@ -138,7 +146,7 @@ module.exports = {
     this.versions = process.versions
   },
 
-  computed: mapState(['params', 'searchResult', 'errors']),
+  computed: mapState(['params', 'searchResult', 'searchResultSelection', 'errors']),
 
   components: {
     MdlButton,

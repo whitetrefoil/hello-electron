@@ -8,14 +8,15 @@ Vue.use(Vuex)
 
 
 const initialState = {
-  params      : {
+  params               : {
     searchIn: '',
     rawExt  : ['ARW', 'DNG'],
     jpgExt  : ['JPG', 'JPEG'],
     orderBy : 'jpg',
   },
-  searchResult: void 0,
-  errors      : [],
+  searchResult         : void 0,
+  searchResultSelection: void 0,
+  errors               : [],
 }
 
 const mutations = {
@@ -58,6 +59,10 @@ const mutations = {
 
   SET_SEARCH_RESULT(state, result) {
     state.searchResult = result
+  },
+
+  SET_SEARCH_RESULT_SELECTION(state, selection) {
+    state.searchResultSelection = selection
   },
 
   ADD_ERROR_MESSAGE(state, { message, timestamp }) {

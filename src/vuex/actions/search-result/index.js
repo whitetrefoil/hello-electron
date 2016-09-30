@@ -10,14 +10,12 @@ const path = require('path')
  * @property {string} path
  * @property {string} shortPath
  * @property {string} extname
- * @property {?boolean} isSelected
  */
 
 /**
  * @typedef {Object} RenderedResultRow
  * @property {File} file
  * @property {Array.<File>} companions
- * @method {undefined} select
  */
 
 /**
@@ -61,19 +59,19 @@ const getBasenameWithPath = function getBasenameWithPath(filePath) {
 
 class SearchResult {
   /** @type {Array.<string>} */
-  rawExt = [];
+  rawExt   = [];
   /** @type {Array.<string>} */
-  jpgExt = [];
+  jpgExt   = [];
   /** @type {Array.<File>} */
   rawFiles = [];
   /** @type {Array.<File>} */
   jpgFiles = [];
   /** @type {Array.<RenderedResultRow>} */
-  byRaw = [];
+  byRaw    = [];
   /** @type {Array.<RenderedResultRow>} */
-  byJpg = [];
+  byJpg    = [];
   /** @type {string} */
-  baseDir = '';
+  baseDir  = '';
 
   /**
    * @param {Array.<string>} files
@@ -86,7 +84,6 @@ class SearchResult {
       return {
         path      : jpgFile,
         shortPath : path.relative(this.baseDir, jpgFile),
-        isSelected: false,
       }
     })
 
@@ -107,6 +104,7 @@ class SearchResult {
     const rendered = []
 
     _.forEach(byFiles, byFile => {
+      /** @type {RenderedResultRow} */
       const row         = { file: byFile }
       const rawBasename = getBasenameWithPath(byFile.shortPath)
 

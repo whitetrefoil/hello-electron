@@ -56,6 +56,7 @@ const localStoragePlugin = function localStoragePlugin(store) {
         localStorage.setItem('errors', JSON.stringify(state.errors))
         break
       case 'SET_SEARCH_RESULT':
+      case 'SET_SEARCH_RESULT_SELECTION':
         break
       default:
         log.warn(`Unknown mutation "${mutation.type}", will ignore...`)

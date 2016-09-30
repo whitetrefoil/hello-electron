@@ -24,7 +24,7 @@ module.exports = merge.smart(common, {
         loader: ExtractTextPlugin.extract('css!resolve-url?sourceMap!sass?sourceMap'),
       },
       {
-        test  : /\.(png|jpe?g|gif|svg|woff2?|ttf|eot|ico)$/,
+        test  : /\.(?:png|jpe?g|gif|svg|woff2?|ttf|eot|ico)(?:\?\w*)?$/,
         loader: 'url',
         query : {
           // limit for base64 inlining in bytes

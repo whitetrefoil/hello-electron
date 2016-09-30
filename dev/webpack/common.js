@@ -88,5 +88,9 @@ module.exports = {
     minimize: false,
   },
 
+  resolveUrlLoader: {
+    keepQuery: true,
+  },
+
   plugins: [],
 }

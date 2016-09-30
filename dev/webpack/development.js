@@ -26,7 +26,7 @@ module.exports = merge.smart(common, {
         loaders: ExtractTextPlugin.extract('style!css?sourceMap!resolve-url?sourceMap!sass?sourceMap'),
       },
       {
-        test  : /\.(png|jpe?g|gif|svg|woff2?|ttf|eot|ico)$/,
+        test  : /\.(?:png|jpe?g|gif|svg|woff2?|ttf|eot|ico)(?:\?\w*)?$/,
         loader: 'url',
       },
     ],

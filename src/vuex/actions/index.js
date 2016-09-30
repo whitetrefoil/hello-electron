@@ -95,7 +95,35 @@ module.exports = {
     }
   },
 
-  search({ commit, dispatch, state }) {
+  setSearchResult({ commit }, searchResult) {
+    commit('SET_SEARCH_RESULT', searchResult)
+  },
+
+  setSearchResultSelection({ state, commit }, { jpgPath, isSelected }) {
+    const allJpgPaths = _.map(state.searchResult.jpgFiles, 'path')
+
+    if (jpgPath == null) {
+      const newSelection = _.reduce(allJpgPaths, (acc, k) => {
+        return { ...acc, [k]: isSelected }
+      }, {})
+      commit('SET_SEARCH_RESULT_SELECTION', newSelection)
+      return
+    }
+
+    if (_.includes(allJpgPaths, jpgPath)) {
+      const newSelection = _.assign(
+        {},
+        state.searchResultSelection,
+        { [jpgPath]: isSelected },
+      )
+      commit('SET_SEARCH_RESULT_SELECTION', newSelection)
+      return
+    }
+
+    log.warn(`Attempting to select unknown file ${jpgPath}, ignoring.`)
+  },
+
+  search({ dispatch, state }) {
 
     const files = []
 
@@ -113,8 +141,12 @@ module.exports = {
           state.params.jpgExt,
           state.params.searchIn,
         )
-        commit('SET_SEARCH_RESULT', searchResult)
-        commit('CLEAR_ERROR_MESSAGES')
+        dispatch('setSearchResult', searchResult)
+        dispatch('setSearchResultSelection', {
+          jpgPath   : null,
+          isSelected: true,
+        })
+        dispatch('clearErrorMessage')
       })
 
       .on('error', err => {
@@ -134,6 +166,10 @@ module.exports = {
       message  : message.toString(),
       timestamp: new Date(),
     })
+  },
+
+  clearErrorMessage({ commit }) {
+    commit('CLEAR_ERROR_MESSAGES')
   },
 
   removeFirstErrorMessage({ commit }) {
