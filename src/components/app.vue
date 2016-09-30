@@ -1,17 +1,15 @@
 <style lang="scss" rel="stylesheet/scss">
-$image_path: "~material-design-lite/src/images";
-@import "~material-design-lite/src/_color-definitions.scss";
-@import "~material-design-lite/src/material-design-lite.scss";
-/*@import "~material-design-lite/dist/material.indigo-pink.min.css";*/
-@import "~vendor/roboto-fonts.scss";
-@import "~vendor/material-icons.css";
+$image_path : "~material-design-lite/src/images";
+@import "~materialize-css/sass/materialize.scss";
 </style>
 
 <style lang="scss" rel="stylesheet/scss">
-* {
-  box-sizing          : border-box;
-  -webkit-app-region  : drag;
-  -webkit-user-select : none;
+html { height : 100% }
+
+body {
+  height    : 100%;
+  display   : flex;
+  flex-flow : column nowrap;
 }
 
 input, button, textarea {
@@ -31,6 +29,9 @@ input, button, textarea {
 }
 
 #app {
+  height    : 100%;
+  display   : flex;
+  flex-flow : column nowrap;
 
   &, input, textarea, button {
     font-family : Roboto, sans-serif;
@@ -48,11 +49,17 @@ input, button, textarea {
     position  : relative;
     overflow  : hidden;
   }
+
+  > footer {
+    padding: {
+      top: 0;
+    }
+  }
 }
 </style>
 
 <template>
-  <div id="app" class="mdl-layout mdl-js-layout">
+  <div id="app">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <h1 class="mdl-layout-title">Hello Electron!</h1>
@@ -116,8 +123,10 @@ input, button, textarea {
       ></notification>
     </div>
 
-    <footer class="mdl-mini-footer">
-      <div>We are using node {{versions.node}}, Chrome {{versions.chrome}}, and Electron {{versions.electron}}.</div>
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="container">We are using node {{versions.node}}, Chrome {{versions.chrome}}, and Electron {{versions.electron}}.</div>
+      </div>
     </footer>
   </div>
 </template>

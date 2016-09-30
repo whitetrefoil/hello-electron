@@ -42,7 +42,7 @@ module.exports = {
 
   computed: {
     isChecked() {
-      return Boolean(this.checked);
+      return Boolean(this.checked)
     },
     isIndeterminate() {
       return this.checked === 'indeterminate'

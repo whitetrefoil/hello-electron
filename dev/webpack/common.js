@@ -9,7 +9,9 @@ module.exports = {
 
   entry: {
     lib: [
-      'material-design-lite',
+      'jquery',
+      // 'material-design-lite',
+      'materialize-css',
       'moment',
       'vue',
       // 'vue-mdl',

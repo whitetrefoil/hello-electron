@@ -22,8 +22,12 @@ module.exports = merge.smart(common, {
         loader: ExtractTextPlugin.extract('style!css?sourceMap'),
       },
       {
-        test   : /\.scss$/,
+        test   : /\.sass$/,
         loaders: ExtractTextPlugin.extract('style!css?sourceMap!resolve-url?sourceMap!sass?sourceMap'),
+      },
+      {
+        test   : /\.scss$/,
+        loaders: ExtractTextPlugin.extract('style!css?sourceMap!resolve-url?sourceMap!sass?config=scssLoader?sourceMap'),
       },
       {
         test  : /\.(?:png|jpe?g|gif|svg|woff2?|ttf|eot|ico)(?:\?\w*)?$/,
