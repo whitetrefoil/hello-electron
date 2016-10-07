@@ -5,11 +5,13 @@ const config  = require('../config')
 const babelrc = fs.readJsonSync('.babelrc')
 
 module.exports = {
-  target: 'electron',
+  target: 'electron-renderer',
 
   entry: {
     lib: [
+      'bluebird',
       'jquery',
+      'lodash',
       // 'material-design-lite',
       'materialize-css',
       'moment',
@@ -40,13 +42,13 @@ module.exports = {
   },
 
   module: {
-    preLoaders: [
-      {
-        test   : /\.(?:js|vue)$/,
-        loader : 'eslint',
-        exclude: /node_modules/,
-      },
-    ],
+    // preLoaders: [
+    //   {
+    //     test   : /\.(?:js|vue)$/,
+    //     loader : 'eslint',
+    //     exclude: /node_modules/,
+    //   },
+    // ],
     loaders   : [
       {
         test  : /\.html$/,

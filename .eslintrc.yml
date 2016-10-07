@@ -83,7 +83,7 @@ rules:
   no-lone-blocks: 2
   no-loop-func: 2
   no-magic-numbers: [1, {ignore: [0, 1], ignoreArrayIndexes: true, detectObjects: true}]
-  no-multi-spaces: [1, {exceptions: {VariableDeclarator: true, AssignmentExpression: true, ImportDeclaration: true}}]
+  no-multi-spaces: [0, {exceptions: {VariableDeclarator: true, AssignmentExpression: true, ImportDeclaration: true}}]
   no-multi-str: 2
   no-native-reassign: 2
   no-new-func: 2
@@ -132,7 +132,7 @@ rules:
   no-undef-init: 2
   no-undef: 2
   no-undefined: 2
-  no-unused-vars: [2, {vars: all, args: after-used}]
+  no-unused-vars: [2, {vars: local, args: after-used}]
   no-use-before-define: 2
 
   # Node.js and CommonJS

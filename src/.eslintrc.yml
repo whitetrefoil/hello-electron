@@ -32,8 +32,5 @@ rules:
   object-curly-spacing: 0
   generator-star-spacing: 0
 
-  # Relax some rules for connect middleware functions
-  no-unused-vars: [2, {vars: all, args: after-used, argsIgnorePattern: (req|res|next)}]
-
 globals:
   componentHandler: false

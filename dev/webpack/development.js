@@ -50,6 +50,10 @@ module.exports = merge.smart(common, {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'lib',
+      minChunks: Infinity,
+    }),
     new ExtractTextPlugin('./[name].css', { allChunks: true }),
     new HtmlWebpackPlugin({
       filename      : '../index.html',

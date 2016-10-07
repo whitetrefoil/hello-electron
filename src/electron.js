@@ -13,8 +13,8 @@ const createWindow = function createWindow() {
   // and load the index.html of the app.
   win.loadURL(`file://${__dirname}/index.html`)
 
-  const vueToolsPath = '/Users/ZhangXiao/Library/Application Support/Google/Chrome/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/2.1.2_0'
-  BrowserWindow.addDevToolsExtension(vueToolsPath)
+  // const vueToolsPath = '/Users/ZhangXiao/Library/Application Support/Google/Chrome/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/2.1.2_0'
+  // BrowserWindow.addDevToolsExtension(vueToolsPath)
 
   // Open the DevTools.
   win.webContents.openDevTools()
